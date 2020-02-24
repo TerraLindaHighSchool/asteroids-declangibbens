@@ -17,7 +17,6 @@ public class Rocket extends SmoothMover
     
     private GreenfootImage rocket = new GreenfootImage("rocket.png");    
     private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
-
     /**
      * Initialise this rocket.
      */
@@ -36,6 +35,7 @@ public class Rocket extends SmoothMover
         checkKeys();
         reloadDelayCount++;
         move();
+        checkCollision();
     }
     
     /**
@@ -87,5 +87,16 @@ public class Rocket extends SmoothMover
             setImage(rocket);
         }
         
+    }
+    
+    public void checkCollision()
+    {
+        if( getOneIntersectingObject(Asteroid.class) != null) 
+        {
+            World world = getWorld();
+            Explosion explosion = new Explosion();
+            world.addObject(explosion, getX() , getY());
+            world.removeObject(this);
+        }
     }
 }
