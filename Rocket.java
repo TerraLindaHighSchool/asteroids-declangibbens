@@ -89,7 +89,7 @@ public class Rocket extends SmoothMover
         
     }
     
-    public void checkCollision()
+    private void checkCollision()
     {
         if( getOneIntersectingObject(Asteroid.class) != null) 
         {
@@ -97,6 +97,7 @@ public class Rocket extends SmoothMover
             Explosion explosion = new Explosion();
             world.addObject(explosion, getX() , getY());
             world.removeObject(this);
+            Greenfoot.stop();
         }
     }
 }
