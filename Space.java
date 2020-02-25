@@ -69,5 +69,9 @@ public class Space extends World
     {
         // TODO: show the score board here. Currently missing.
     }
-
+    
+    public void updateScore(int addToScore)
+    {
+        scoreCounter.add(addToScore);
+    }
 }
