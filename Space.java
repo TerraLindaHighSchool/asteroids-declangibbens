@@ -11,6 +11,8 @@ public class Space extends World
     private Counter scoreCounter;
     private int startAsteroids = 3;
     public int random;
+    public boolean end = false;
+    public int e = 0;
     /**
      * Create the space and all objects within it.
      */
@@ -22,15 +24,15 @@ public class Space extends World
         background.fill();
 
         Rocket rocket = new Rocket();
-        addObject(rocket, getWidth()/2 + 100, getHeight()/2);
-
+        addObject(rocket, getWidth()/2, getHeight()-20);
+        addDetail();
         addAsteroids(startAsteroids);
         paintRocks(150);
 
         scoreCounter = new Counter("Score: ");
         addObject(scoreCounter, 60, 480);
         
-        addDetail();
+        
         
 
         Explosion.initializeImages();
@@ -46,9 +48,8 @@ public class Space extends World
     {
         for(int i = 0; i < count; i++) 
         {
-            int x = Greenfoot.getRandomNumber(getWidth()/2);
-            int y = Greenfoot.getRandomNumber(getHeight()/2);
-            addObject(new Asteroid(), x, y);
+            int x = Greenfoot.getRandomNumber(600);
+            addObject(new Asteroid(), x, 0);
         }
     }
 
@@ -68,11 +69,11 @@ public class Space extends World
     private void addDetail()
     {
         int x = Greenfoot.getRandomNumber(getWidth());
-        int y = Greenfoot.getRandomNumber(getHeight());
+        int y = Greenfoot.getRandomNumber(getHeight()/2);
         
         addObject(new Skull(),x , y);
         int h = Greenfoot.getRandomNumber(getWidth());
-        int j = Greenfoot.getRandomNumber(getHeight());
+        int j = Greenfoot.getRandomNumber(getHeight()-80);
         
         addObject(new Skeleton(),h, j);
     }
@@ -86,6 +87,7 @@ public class Space extends World
         int y = getHeight() / 2;
         int currentScore = scoreCounter.getValue();
         addObject(new ScoreBoard(currentScore),x ,y);
+        end = true;
     }
 
     public void updateScore(int addToScore)
@@ -101,5 +103,17 @@ public class Space extends World
     {
         
         
+    }
+    public void act()
+    {
+        if(end != false)
+        {
+            e++;
+        }
+        if(e > 25)
+        {
+            Greenfoot.stop();
+            removeObjects(getObjects(Asteroid.class));
+        }
     }
 }

@@ -11,21 +11,15 @@ import greenfoot.*;
  */
 public class Rocket extends SmoothMover
 {
-    private static final int gunReloadTime = 5;         // The minimum delay between firing the gun.
-
-    private int reloadDelayCount;               // How long ago we fired the gun the last time.
-    private Vector acceleration;
-    private GreenfootImage rocket = new GreenfootImage("rocket.png");    
-    private GreenfootImage rocketWithThrust = new GreenfootImage("rocketWithThrust.png");
+    private GreenfootImage left = new GreenfootImage("left.png");
+    private GreenfootImage right = new GreenfootImage("right.png");
     /**
      * Initialise this rocket.
      */
     public Rocket()
     {
-        reloadDelayCount = 5;
-        addToVelocity(new Vector(180, .1));
-        acceleration = (new Vector(0, 0.3));
-        addToVelocity(new Vector(13, 0.3));
+        
+       
     }
 
     /**
@@ -35,8 +29,6 @@ public class Rocket extends SmoothMover
     public void act()
     {
         checkKeys();
-        reloadDelayCount++;
-        move(1);
         checkCollision();
     }
     
@@ -45,54 +37,18 @@ public class Rocket extends SmoothMover
      */
     private void checkKeys() 
     {
-        if (Greenfoot.isKeyDown("space")) 
+        if (Greenfoot.isKeyDown("d")) 
         {
-            fire();
+            setLocation(getX()+3, getY());
+            setImage(right);
         }
-        if (Greenfoot.isKeyDown("left")) 
+        if (Greenfoot.isKeyDown("a")) 
         {
-            turn(-5);
-        }
-        if (Greenfoot.isKeyDown("right")) 
-        {
-            turn(5);
-        }
-        if (Greenfoot.isKeyDown("up")) 
-        {
-            move(1);
-        }
-        ignite(Greenfoot.isKeyDown("up"));
-    }
-    
-    /**
-     * Fire a bullet if the gun is ready.
-     */
-    private void fire() 
-    {
-        if (reloadDelayCount >= gunReloadTime) 
-        {
-            Bullet bullet = new Bullet (getVelocity(), getRotation());
-            getWorld().addObject (bullet, getX(), getY());
-            bullet.move ();
-            reloadDelayCount = 0;
+            setLocation(getX()-3, getY());
+            setImage(left);
         }
     }
-    
-    public void ignite(boolean boosterOn)
-    {
-        if(boosterOn)
-        {
-            setImage(rocketWithThrust);
-            acceleration.setDirection(getRotation());
-            addToVelocity(acceleration);
-        }
-        else
-        {
-            setImage(rocket);
-        }
-        
-    }
-    
+
     private void checkCollision()
     {
         if( getOneIntersectingObject(Asteroid.class) != null) 

@@ -50,6 +50,7 @@ public class Asteroid extends SmoothMover
             addNewAsteroid();
             getWorld().removeObject(this);
         }
+        
     }
     
     private void addNewAsteroid()
@@ -68,56 +69,5 @@ public class Asteroid extends SmoothMover
         this.size = size;
         GreenfootImage image = getImage();
         image.scale(size, size);
-    }
-
-    /**
-     * Return the current stability of this asteroid. (If it goes down to 
-     * zero, it breaks up.)
-     */
-    public int getStability() 
-    {
-        return stability;
-    }
-    
-    /**
-     * Hit this asteroid dealing the given amount of damage.
-     */
-    public void hit(int damage) 
-    {
-        stability = stability - damage;
-        if (stability <= 0) 
-        {
-            breakUp();
-        }
-    }
-    
-    /**
-     * Break up this asteroid. If we are still big enough, this will create two
-     * smaller asteroids. If we are small already, just disappear.
-     */
-    private void breakUp() 
-    {
-        //Greenfoot.playSound("Explosion.wav");
-        /**
-        if (size <= 16) {
-            getWorld().removeObject(this);
-        }
-        else {
-            int r = getVelocity().getDirection() + Greenfoot.getRandomNumber(45);
-            double l = getVelocity().getLength();
-            Vector speed1 = new Vector(r + 60, l * 1.2);
-            Vector speed2 = new Vector(r - 60, l * 1.2);        
-            Asteroid a1 = new Asteroid(size/2, speed1);
-            Asteroid a2 = new Asteroid(size/2, speed2);
-            getWorld().addObject(a1, getX(), getY());
-            getWorld().addObject(a2, getX(), getY());        
-            a1.move();
-            a2.move();
-        
-            getWorld().removeObject(this);
-       
-        
-        }
-        **/
     }
 }
