@@ -13,7 +13,7 @@ public class Asteroid extends SmoothMover
 
     /** When the stability reaches 0 the asteroid will explode */
     private int stability;
-
+    public int x;
 
     /**
      * Create an asteroid with default size and random direction of movement.
@@ -21,6 +21,7 @@ public class Asteroid extends SmoothMover
     public Asteroid()
     {
         this(50);
+       
     }
     
     /**
@@ -43,9 +44,20 @@ public class Asteroid extends SmoothMover
     
     public void act()
     {         
-        move();
+        setLocation(getX(), getY()+3);
+        if(isAtEdge())
+        {
+            addNewAsteroid();
+            getWorld().removeObject(this);
+        }
     }
-
+    
+    private void addNewAsteroid()
+    {
+        int x = Greenfoot.getRandomNumber(600);
+        
+        getWorld().addObject(new Asteroid(), x, 0);
+    }
     /**
      * Set the size of this asteroid. Note that stability is directly
      * related to size. Smaller asteroids are less stable.
@@ -85,8 +97,8 @@ public class Asteroid extends SmoothMover
      */
     private void breakUp() 
     {
-        Greenfoot.playSound("Explosion.wav");
-        
+        //Greenfoot.playSound("Explosion.wav");
+        /**
         if (size <= 16) {
             getWorld().removeObject(this);
         }
@@ -103,6 +115,9 @@ public class Asteroid extends SmoothMover
             a2.move();
         
             getWorld().removeObject(this);
+       
+        
         }
+        **/
     }
 }
