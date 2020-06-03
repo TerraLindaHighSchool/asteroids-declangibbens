@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author Poul Henriksen
  * @author Michael Kölling
  */
-public class Asteroid extends SmoothMover
+public class Rock extends SmoothMover
 {
     /** Size of this asteroid */
     private int size;
@@ -18,7 +18,7 @@ public class Asteroid extends SmoothMover
     /**
      * Create an asteroid with default size and random direction of movement.
      */
-    public Asteroid()
+    public Rock()
     {
         this(50);
        
@@ -27,7 +27,7 @@ public class Asteroid extends SmoothMover
     /**
      * Create an asteroid with a given size and random direction of movement.
      */
-    public Asteroid(int size)
+    public Rock(int size)
     {
         super(new Vector(Greenfoot.getRandomNumber(360), 2));
         setSize(size);
@@ -36,7 +36,7 @@ public class Asteroid extends SmoothMover
     /**
      * Create an asteroid with a given size and direction of movement.
      */
-    public Asteroid(int size, Vector velocity)
+    public Rock(int size, Vector velocity)
     {
         super(velocity);
         setSize(size);
@@ -45,19 +45,18 @@ public class Asteroid extends SmoothMover
     public void act()
     {         
         setLocation(getX(), getY()+3);
-        if(isAtEdge())
+        if(isAtEdge()  || getOneIntersectingObject(Platform.class) != null )
         {
             addNewAsteroid();
             getWorld().removeObject(this);
         }
-        
     }
     
     private void addNewAsteroid()
     {
         int x = Greenfoot.getRandomNumber(600);
         
-        getWorld().addObject(new Asteroid(), x, 0);
+        getWorld().addObject(new Rock(), x, 0);
     }
     /**
      * Set the size of this asteroid. Note that stability is directly

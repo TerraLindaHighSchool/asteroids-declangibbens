@@ -17,7 +17,7 @@ public class Counter extends Actor
     private int value;
     private int target;
     private String prefix;
-    
+    public int x;
     public Counter()
     {
         this(new String());
@@ -30,7 +30,7 @@ public class Counter extends Actor
     {
         background = getImage();  // get image from class
         value = 0;
-        target = 0;
+        target = 1;
         this.prefix = prefix;
         updateImage();
     }
@@ -48,6 +48,7 @@ public class Counter extends Actor
             value--;
             updateImage();
         }
+        
     }
 
     /**

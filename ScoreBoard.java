@@ -20,7 +20,7 @@ public class ScoreBoard extends Actor
     {
         this(100);
     }
-
+    
     /**
      * Create a score board for the final result.
      */
@@ -30,7 +30,7 @@ public class ScoreBoard extends Actor
     }
 
     /**
-     * Make the score board image.
+       * Make the score board image.
      */
     private void makeImage(String title, String prefix, int score)
     {

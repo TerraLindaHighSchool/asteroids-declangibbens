@@ -6,27 +6,32 @@ import greenfoot.*;
  * @author Michael Kölling
  * @version 1.1
  */
-public class Space extends World
+public class UnderGround extends World
 {
     private Counter scoreCounter;
     private int startAsteroids = 3;
     public int random;
     public boolean end = false;
     public int e = 0;
+    public int i = 0;
+    public int platform = 0;
+    public int k = 0;
+    public int life = 0;
+    public int score;
     /**
      * Create the space and all objects within it.
      */
-    public Space() 
+    public UnderGround() 
     {
         super(600, 500, 1);
         GreenfootImage background = getBackground();
         background.setColor(new Color(102, 51, 0));
         background.fill();
 
-        Rocket rocket = new Rocket();
-        addObject(rocket, getWidth()/2, getHeight()-20);
+        Vehicle vehicle = new Vehicle();
+        addObject(vehicle, getWidth()/2, getHeight()-20);
         addDetail();
-        addAsteroids(startAsteroids);
+        addRocks(startAsteroids);
         paintRocks(150);
 
         scoreCounter = new Counter("Score: ");
@@ -44,12 +49,12 @@ public class Space extends World
      * Add a given number of asteroids to our world. Asteroids are only added into
      * the left half of the world.
      */
-    private void addAsteroids(int count) 
+    private void addRocks(int count) 
     {
         for(int i = 0; i < count; i++) 
         {
             int x = Greenfoot.getRandomNumber(600);
-            addObject(new Asteroid(), x, 0);
+            addObject(new Rock(), x, 0);
         }
     }
 
@@ -106,6 +111,7 @@ public class Space extends World
     }
     public void act()
     {
+        score = score + scoreCounter.getValue();
         if(end != false)
         {
             e++;
@@ -113,7 +119,31 @@ public class Space extends World
         if(e > 25)
         {
             Greenfoot.stop();
-            removeObjects(getObjects(Asteroid.class));
+            removeObjects(getObjects(Rock.class));
+        }
+        i++;
+        if( i % 60 == 0)
+        {
+            updateScore(1);
+        }
+        if(scoreCounter.getValue() % 10 == 0 && platform == 0)
+        {
+            int x = Greenfoot.getRandomNumber(600);
+            addObject(new Platform(), x, 440);
+            platform++;
+        }
+        k++;
+        if(k % 60 == 0 && platform == 1)
+        {
+            life++;
+            int p = Greenfoot.getRandomNumber(10);
+            p = p + 10;
+            if(life > p)
+            {
+                removeObjects(getObjects(Platform.class));
+                platform--;
+                life = 0;
+            }
         }
     }
 }

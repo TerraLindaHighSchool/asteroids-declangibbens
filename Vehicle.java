@@ -9,14 +9,15 @@ import greenfoot.*;
  * 
  * @version 1.1
  */
-public class Rocket extends SmoothMover
+public class Vehicle extends SmoothMover
 {
     private GreenfootImage left = new GreenfootImage("left.png");
     private GreenfootImage right = new GreenfootImage("right.png");
+    public int i = 0;
     /**
      * Initialise this rocket.
      */
-    public Rocket()
+    public Vehicle()
     {
         
        
@@ -30,6 +31,7 @@ public class Rocket extends SmoothMover
     {
         checkKeys();
         checkCollision();
+        
     }
     
     /**
@@ -51,12 +53,12 @@ public class Rocket extends SmoothMover
 
     private void checkCollision()
     {
-        if( getOneIntersectingObject(Asteroid.class) != null) 
+        if( getOneIntersectingObject(Rock.class) != null) 
         {
-           Space space = (Space) getWorld();
-           space.addObject(new Explosion(), getX(), getY());
-           space.removeObject(this);
-           space.gameOver();
+           UnderGround underGround = (UnderGround) getWorld();
+           underGround.addObject(new Explosion(), getX(), getY());
+           underGround.removeObject(this);
+           underGround.gameOver();
         }
     }
 }
