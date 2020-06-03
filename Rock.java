@@ -14,7 +14,7 @@ public class Rock extends SmoothMover
     /** When the stability reaches 0 the asteroid will explode */
     private int stability;
     public int x;
-
+    
     /**
      * Create an asteroid with default size and random direction of movement.
      */
@@ -44,15 +44,18 @@ public class Rock extends SmoothMover
     
     public void act()
     {         
-        setLocation(getX(), getY()+3);
+        int speed = ((UnderGround)getWorld()).speed;
+        setLocation(getX(), getY()+speed);
+        
         if(isAtEdge()  || getOneIntersectingObject(Platform.class) != null )
         {
-            addNewAsteroid();
+            addNewRock();
             getWorld().removeObject(this);
         }
+        
     }
     
-    private void addNewAsteroid()
+    private void addNewRock()
     {
         int x = Greenfoot.getRandomNumber(600);
         

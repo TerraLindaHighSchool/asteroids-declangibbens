@@ -18,6 +18,7 @@ public class UnderGround extends World
     public int k = 0;
     public int life = 0;
     public int score;
+    public int speed = 3;
     /**
      * Create the space and all objects within it.
      */
@@ -111,7 +112,19 @@ public class UnderGround extends World
     }
     public void act()
     {
-        score = score + scoreCounter.getValue();
+        score = scoreCounter.getValue();
+        if(score == 45 && speed < 4)
+        {
+            speed++;
+        }
+        if(score == 90 && speed < 5)
+        {
+            speed++;
+        }
+        if(score == 135 && speed < 6)
+        {
+            speed++;
+        }
         if(end != false)
         {
             e++;
