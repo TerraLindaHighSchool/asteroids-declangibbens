@@ -53,7 +53,7 @@ public class Vehicle extends SmoothMover
 
     private void checkCollision()
     {
-        if( getOneIntersectingObject(Rock.class) != null) 
+        if( getOneIntersectingObject(Rock.class) != null || getOneIntersectingObject(MegaRock.class) != null) 
         {
            UnderGround underGround = (UnderGround) getWorld();
            underGround.addObject(new Explosion(), getX(), getY());

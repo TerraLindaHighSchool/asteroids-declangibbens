@@ -36,7 +36,7 @@ public class UnderGround extends World
         paintRocks(150);
 
         scoreCounter = new Counter("Score: ");
-        addObject(scoreCounter, 60, 480);
+        addObject(scoreCounter, 55, 20);
         
         
         
@@ -138,6 +138,12 @@ public class UnderGround extends World
         if( i % 60 == 0)
         {
             updateScore(1);
+            int Mega = Greenfoot.getRandomNumber(10);
+            if (Mega == 1)
+            {
+                int x = Greenfoot.getRandomNumber(600);
+                addObject(new MegaRock(), x, 0);
+            }
         }
         if(scoreCounter.getValue() % 10 == 0 && platform == 0)
         {
