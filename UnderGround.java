@@ -19,6 +19,8 @@ public class UnderGround extends World
     public int life = 0;
     public int score;
     public int speed = 3;
+    public boolean Double;
+    public int h = 60;
     /**
      * Create the space and all objects within it.
      */
@@ -134,8 +136,16 @@ public class UnderGround extends World
             removeObjects(getObjects(Rock.class));
         }
         i++;
-        if( i % 60 == 0)
+        if( i % h == 0)
         {
+            if(Double = true)
+            {
+                h = 30;
+            }
+            else
+            {
+                h = 60;
+            }
             updateScore(1);
             int Mega = Greenfoot.getRandomNumber(10);
             if (Mega == 1)

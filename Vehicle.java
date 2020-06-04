@@ -59,6 +59,27 @@ public class Vehicle extends SmoothMover
            underGround.addObject(new Explosion(), getX(), getY());
            underGround.removeObject(this);
            underGround.gameOver();
+           return;
+        }
+        if( getOneIntersectingObject(FastRock.class) != null )
+        {
+            UnderGround underGround = (UnderGround) getWorld();
+           underGround.addObject(new Explosion(), getX(), getY());
+           underGround.removeObject(this);
+           underGround.gameOver();
+           return;
+        }
+        if(isTouching(Double.class))
+        {
+            removeTouching(Double.class);
+            boolean Double = ((UnderGround)getWorld()).Double;
+            Double = true;
+            i++;
+            if (i > 1500)
+            {
+                Double = false;
+            }
+            return;
         }
     }
 }
