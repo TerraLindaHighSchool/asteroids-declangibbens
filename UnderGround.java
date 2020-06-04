@@ -42,7 +42,6 @@ public class UnderGround extends World
         
 
         Explosion.initializeImages();
-        ProtonWave.initializeImages();
         prepare();
     }
 
@@ -143,6 +142,12 @@ public class UnderGround extends World
             {
                 int x = Greenfoot.getRandomNumber(600);
                 addObject(new MegaRock(), x, 0);
+            }
+            int Fast = Greenfoot.getRandomNumber(10);
+            if (Fast == 1)
+            {
+                int x = Greenfoot.getRandomNumber(600);
+                addObject(new FastRock(), x, 0);
             }
         }
         if(scoreCounter.getValue() % 10 == 0 && platform == 0)
