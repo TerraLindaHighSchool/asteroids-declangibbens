@@ -39,12 +39,12 @@ public class Vehicle extends SmoothMover
      */
     private void checkKeys() 
     {
-        if (Greenfoot.isKeyDown("d")) 
+        if (Greenfoot.isKeyDown("d") ||(Greenfoot.isKeyDown("right"))) 
         {
             setLocation(getX()+3, getY());
             setImage(right);
         }
-        if (Greenfoot.isKeyDown("a")) 
+        if (Greenfoot.isKeyDown("a")||(Greenfoot.isKeyDown("left"))) 
         {
             setLocation(getX()-3, getY());
             setImage(left);

@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Space. Something for rockets to fly in.
+ * UnderGround
  * 
  * @author Michael Kölling
  * @version 1.1
@@ -40,17 +40,14 @@ public class UnderGround extends World
         scoreCounter = new Counter("Score: ");
         addObject(scoreCounter, 55, 20);
         
-        
+        Directions directions = new Directions();
+        addObject(directions, getWidth()/2, getHeight()/2);
         
 
         Explosion.initializeImages();
         prepare();
     }
-
-    /**
-     * Add a given number of asteroids to our world. Asteroids are only added into
-     * the left half of the world.
-     */
+    
     private void addRocks(int count) 
     {
         for(int i = 0; i < count; i++) 
@@ -113,6 +110,7 @@ public class UnderGround extends World
     }
     public void act()
     {
+        removeObjects(getObjects(Directions.class));
         score = scoreCounter.getValue();
         if(score == 45 && speed < 4)
         {
@@ -158,6 +156,12 @@ public class UnderGround extends World
             {
                 int x = Greenfoot.getRandomNumber(600);
                 addObject(new FastRock(), x, 0);
+            }
+            int Double = Greenfoot.getRandomNumber(80);
+            if (Double == 1)
+            {
+                int x = Greenfoot.getRandomNumber(600);
+                addObject(new Double(), x, 0);
             }
         }
         if(scoreCounter.getValue() % 10 == 0 && platform == 0)
